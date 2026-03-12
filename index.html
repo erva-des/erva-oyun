@@ -28,27 +28,51 @@ cursor:pointer;
 
 #cake{
 display:none;
-font-size:80px;
+font-size:90px;
 margin-top:40px;
 cursor:pointer;
+animation:bounce 1s infinite alternate;
 }
 
-#message{
+#big{
 display:none;
-font-size:30px;
-margin-top:20px;
+font-size:40px;
 color:pink;
+margin-top:20px;
 }
 
-.effect{
+#messages{
+display:none;
+font-size:22px;
+margin-top:20px;
+line-height:1.6;
+}
+
+.balloon{
 position:fixed;
 font-size:30px;
-animation:fall 3s linear;
+animation:fly 6s linear infinite;
+}
+
+.heart{
+position:fixed;
+font-size:25px;
+animation:fall 5s linear infinite;
+}
+
+@keyframes fly{
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-100px)}
 }
 
 @keyframes fall{
 0%{transform:translateY(-50px)}
 100%{transform:translateY(100vh)}
+}
+
+@keyframes bounce{
+from{transform:scale(1)}
+to{transform:scale(1.1)}
 }
 
 </style>
@@ -64,14 +88,22 @@ animation:fall 3s linear;
 
 <div id="cake">🎂🕯️</div>
 
-<div id="message">Teyzesinin gülü seni çok seviyorum ❤️</div>
+<div id="big">🎉 İyi ki doğdun Erva 🎉</div>
+
+<div id="messages">
+<p>Teyzesinin gülü seni çok seviyorum ❤️</p>
+<p>İyi ki iroşum seni doğurmuş 💕</p>
+<p>Senle aynı tarihte doğduk ikimiz de balık burcuyuz ♓</p>
+<p>Bizimle kim nasıl başa çıkabilir be teyzem 😄</p>
+</div>
 
 <script>
 
 let score=0
 let target=document.getElementById("target")
 let cake=document.getElementById("cake")
-let message=document.getElementById("message")
+let big=document.getElementById("big")
+let messages=document.getElementById("messages")
 
 function move(){
 let x=Math.random()*window.innerWidth
@@ -92,29 +124,33 @@ return
 }
 
 move()
+
 }
 
 cake.onclick=function(){
 
 cake.innerText="🎂"
 
-message.style.display="block"
+big.style.display="block"
+messages.style.display="block"
+
+for(let i=0;i<20;i++){
+
+let b=document.createElement("div")
+b.innerText="🎈"
+b.className="balloon"
+b.style.left=Math.random()*100+"%"
+document.body.appendChild(b)
+
+}
 
 for(let i=0;i<40;i++){
 
-let e=document.createElement("div")
-
-let emojis=["🎉","🎈","❤️","✨"]
-
-e.innerText=emojis[Math.floor(Math.random()*emojis.length)]
-
-e.className="effect"
-
-e.style.left=Math.random()*100+"%"
-
-document.body.appendChild(e)
-
-setTimeout(()=>{e.remove()},3000)
+let h=document.createElement("div")
+h.innerText="❤️"
+h.className="heart"
+h.style.left=Math.random()*100+"%"
+document.body.appendChild(h)
 
 }
 
