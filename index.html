@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Erva Oyunu 🎈</title>
+
+<style>
+body{
+text-align:center;
+font-family:Arial;
+background:#111;
+color:white;
+overflow:hidden;
+}
+
+h1{
+margin-top:20px;
+}
+
+#score{
+font-size:25px;
+margin-bottom:20px;
+}
+
+#target{
+position:absolute;
+font-size:40px;
+cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Erva'yı Yakala 🎈</h1>
+
+<div id="score">Puan: 0</div>
+
+<div id="target">ERVA 🎈</div>
+
+<script>
+
+let score=0
+let target=document.getElementById("target")
+
+function move(){
+let x=Math.random()*window.innerWidth
+let y=Math.random()*window.innerHeight
+target.style.left=x+"px"
+target.style.top=y+"px"
+}
+
+target.onclick=function(){
+score++
+document.getElementById("score").innerText="Puan: "+score
+move()
+}
+
+move()
+
+setInterval(move,1500)
+
+</script>
+
+</body>
+</html>
